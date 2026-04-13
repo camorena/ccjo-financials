@@ -20,11 +20,7 @@
             --gradient-end: #1a2332;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
@@ -33,819 +29,225 @@
             line-height: 1.6;
         }
 
-        /* Auth Gate */
-        #auth-gate {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--secondary) 100%);
+        /* Language Toggle */
+        .lang-toggle {
             display: flex;
             align-items: center;
-            justify-content: center;
-            z-index: 9999;
-        }
-
-        .auth-container {
-            text-align: center;
-            padding: 3rem;
-            max-width: 420px;
-            width: 100%;
-        }
-
-        .auth-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--accent);
-            letter-spacing: 5px;
-            margin-bottom: 0.5rem;
-        }
-
-        .auth-divider {
-            width: 60px;
-            height: 2px;
-            background: var(--accent);
-            margin: 1.5rem auto;
-        }
-
-        .auth-label {
-            font-size: 0.8rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-        }
-
-        .auth-sub {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-
-        #auth-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        #auth-input {
+            gap: 6px;
             background: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1rem 1.2rem;
-            color: var(--text);
-            font-size: 1rem;
-            text-align: center;
-            letter-spacing: 3px;
-            outline: none;
-            transition: border-color 0.3s;
+            border-radius: 20px;
+            padding: 3px;
+            cursor: pointer;
         }
-
-        #auth-input:focus {
-            border-color: var(--accent);
-        }
-
-        #auth-input::placeholder {
+        .lang-btn {
+            padding: 4px 10px;
+            border-radius: 16px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: transparent;
             color: var(--text-muted);
-            letter-spacing: 2px;
         }
-
-        #auth-form button {
+        .lang-btn.active {
             background: var(--accent);
             color: var(--primary);
-            border: none;
-            border-radius: 8px;
-            padding: 0.9rem;
-            font-size: 0.9rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.1s;
         }
+        .lang-es { display: none; }
+        body.es .lang-en { display: none; }
+        body.es .lang-es { display: inline; }
+        body.es table .lang-en { display: none; }
+        body.es table .lang-es { display: table-cell; }
+        body:not(.es) table .lang-es { display: none; }
 
-        #auth-form button:hover {
-            background: var(--accent-light);
+        /* Auth Gate */
+        #auth-gate {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--secondary) 100%);
+            display: flex; align-items: center; justify-content: center; z-index: 9999;
         }
-
-        #auth-form button:active {
-            transform: scale(0.98);
+        .auth-container { text-align: center; padding: 3rem; max-width: 420px; width: 100%; }
+        .auth-logo { font-size: 1.8rem; font-weight: 700; color: var(--accent); letter-spacing: 5px; margin-bottom: 0.5rem; }
+        .auth-divider { width: 60px; height: 2px; background: var(--accent); margin: 1.5rem auto; }
+        .auth-label { font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+        .auth-sub { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 2rem; line-height: 1.6; }
+        #auth-form { display: flex; flex-direction: column; gap: 1rem; }
+        #auth-input {
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px;
+            padding: 1rem 1.2rem; color: var(--text); font-size: 1rem; text-align: center;
+            letter-spacing: 3px; outline: none; transition: border-color 0.3s;
         }
-
-        .auth-error {
-            color: var(--danger);
-            font-size: 0.85rem;
-            margin-top: 1rem;
-            min-height: 1.2rem;
+        #auth-input:focus { border-color: var(--accent); }
+        #auth-input::placeholder { color: var(--text-muted); letter-spacing: 2px; }
+        #auth-form button {
+            background: var(--accent); color: var(--primary); border: none; border-radius: 8px;
+            padding: 0.9rem; font-size: 0.9rem; font-weight: 700; letter-spacing: 2px;
+            text-transform: uppercase; cursor: pointer; transition: background 0.3s, transform 0.1s;
         }
-
-        .auth-footer {
-            margin-top: 2rem;
-            font-size: 0.75rem;
-            color: #3a4a5a;
-            letter-spacing: 1px;
-        }
+        #auth-form button:hover { background: var(--accent-light); }
+        #auth-form button:active { transform: scale(0.98); }
+        .auth-error { color: var(--danger); font-size: 0.85rem; margin-top: 1rem; min-height: 1.2rem; }
+        .auth-footer { margin-top: 2rem; font-size: 0.75rem; color: #3a4a5a; letter-spacing: 1px; }
 
         /* Navigation */
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(15, 25, 35, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--border);
+            position: fixed; top: 0; width: 100%; background: rgba(15, 25, 35, 0.95);
+            backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid var(--border);
         }
-
         nav .nav-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.8rem 2rem;
+            max-width: 1200px; margin: 0 auto; display: flex;
+            justify-content: space-between; align-items: center; padding: 0.8rem 2rem;
         }
-
-        nav .logo {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--accent);
-            letter-spacing: 2px;
-        }
-
-        nav .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            list-style: none;
-        }
-
+        nav .logo { font-size: 1.1rem; font-weight: 700; color: var(--accent); letter-spacing: 2px; }
+        nav .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
         nav .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: color 0.3s;
-            letter-spacing: 0.5px;
+            color: var(--text-muted); text-decoration: none; font-size: 0.85rem;
+            font-weight: 500; transition: color 0.3s; letter-spacing: 0.5px;
         }
-
-        nav .nav-links a:hover {
-            color: var(--accent);
-        }
+        nav .nav-links a:hover { color: var(--accent); }
 
         /* Hero */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--secondary) 100%);
-            position: relative;
-            overflow: hidden;
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; background: linear-gradient(135deg, var(--gradient-start) 0%, var(--secondary) 100%);
+            position: relative; overflow: hidden;
         }
-
         .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             background: radial-gradient(ellipse at 30% 50%, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
         }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            padding: 2rem;
-        }
-
-        .hero h1 {
-            font-size: 3.2rem;
-            font-weight: 300;
-            letter-spacing: 6px;
-            margin-bottom: 0.5rem;
-            color: var(--accent);
-        }
-
-        .hero .subtitle {
-            font-size: 1.3rem;
-            color: var(--text-muted);
-            font-weight: 300;
-            margin-bottom: 2rem;
-            letter-spacing: 3px;
-        }
-
-        .hero .divider {
-            width: 80px;
-            height: 2px;
-            background: var(--accent);
-            margin: 2rem auto;
-        }
-
-        .hero .meeting-info {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-        }
-
-        .hero .meeting-info strong {
-            color: var(--text);
-        }
-
+        .hero-content { position: relative; z-index: 1; padding: 2rem; }
+        .hero h1 { font-size: 3.2rem; font-weight: 300; letter-spacing: 6px; margin-bottom: 0.5rem; color: var(--accent); }
+        .hero .subtitle { font-size: 1.3rem; color: var(--text-muted); font-weight: 300; margin-bottom: 2rem; letter-spacing: 3px; }
+        .hero .divider { width: 80px; height: 2px; background: var(--accent); margin: 2rem auto; }
+        .hero .meeting-info { font-size: 0.95rem; color: var(--text-muted); letter-spacing: 1px; }
+        .hero .meeting-info strong { color: var(--text); }
         .hero .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-            color: var(--accent);
-            font-size: 1.5rem;
-            cursor: pointer;
+            position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+            animation: bounce 2s infinite; color: var(--accent); font-size: 1.5rem; cursor: pointer;
         }
-
         @keyframes bounce {
             0%, 100% { transform: translateX(-50%) translateY(0); }
             50% { transform: translateX(-50%) translateY(10px); }
         }
 
         /* Sections */
-        section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 5rem 2rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-number {
-            font-size: 0.8rem;
-            color: var(--accent);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-        }
-
-        .section-header h2 {
-            font-size: 2rem;
-            font-weight: 300;
-            letter-spacing: 2px;
-            margin-bottom: 0.5rem;
-        }
-
-        .section-header .section-line {
-            width: 50px;
-            height: 2px;
-            background: var(--accent);
-            margin: 1rem auto;
-        }
-
-        .section-header p {
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-            font-size: 0.95rem;
-        }
-
-        /* Full-width backgrounds */
-        .bg-dark {
-            background: var(--gradient-start);
-        }
-
-        .bg-dark section {
-            padding: 5rem 2rem;
-        }
+        section { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-number { font-size: 0.8rem; color: var(--accent); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .section-header h2 { font-size: 2rem; font-weight: 300; letter-spacing: 2px; margin-bottom: 0.5rem; }
+        .section-header .section-line { width: 50px; height: 2px; background: var(--accent); margin: 1rem auto; }
+        .section-header p { color: var(--text-muted); max-width: 600px; margin: 0 auto; font-size: 0.95rem; }
+        .bg-dark { background: var(--gradient-start); }
 
         /* KPI Cards */
-        .kpi-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
+        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
         .kpi-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1.8rem;
-            text-align: center;
-            transition: transform 0.3s, border-color 0.3s;
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px;
+            padding: 1.8rem; text-align: center; transition: transform 0.3s, border-color 0.3s;
         }
-
-        .kpi-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--accent);
-        }
-
-        .kpi-card .kpi-label {
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-        }
-
-        .kpi-card .kpi-value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-
-        .kpi-card .kpi-value.danger {
-            color: var(--danger);
-        }
-
-        .kpi-card .kpi-value.success {
-            color: var(--success);
-        }
-
-        .kpi-card .kpi-sub {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 0.3rem;
-        }
+        .kpi-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+        .kpi-card .kpi-label { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+        .kpi-card .kpi-value { font-size: 1.8rem; font-weight: 700; color: var(--accent); }
+        .kpi-card .kpi-value.danger { color: var(--danger); }
+        .kpi-card .kpi-value.success { color: var(--success); }
+        .kpi-card .kpi-sub { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.3rem; }
 
         /* Tables */
-        .table-container {
-            overflow-x: auto;
-            margin: 2rem 0;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9rem;
-        }
-
-        thead {
-            background: var(--secondary);
-        }
-
+        .table-container { overflow-x: auto; margin: 2rem 0; border-radius: 8px; border: 1px solid var(--border); }
+        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        thead { background: var(--secondary); }
         th {
-            padding: 1rem 1.2rem;
-            text-align: left;
-            font-weight: 600;
-            font-size: 0.75rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--accent);
-            border-bottom: 2px solid var(--accent);
+            padding: 1rem 1.2rem; text-align: left; font-weight: 600; font-size: 0.75rem;
+            letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); border-bottom: 2px solid var(--accent);
         }
-
-        td {
-            padding: 0.9rem 1.2rem;
-            border-bottom: 1px solid var(--border);
-            color: var(--text);
-        }
-
-        tr:hover td {
-            background: rgba(201, 168, 76, 0.05);
-        }
-
-        tr.total-row td {
-            font-weight: 700;
-            border-top: 2px solid var(--accent);
-            color: var(--accent);
-            font-size: 1rem;
-        }
-
-        td.amount {
-            text-align: right;
-            font-family: 'Courier New', monospace;
-            font-weight: 600;
-        }
-
-        td.negative {
-            color: var(--danger);
-        }
-
-        td.positive {
-            color: var(--success);
-        }
+        td { padding: 0.9rem 1.2rem; border-bottom: 1px solid var(--border); color: var(--text); }
+        tr:hover td { background: rgba(201, 168, 76, 0.05); }
+        tr.total-row td { font-weight: 700; border-top: 2px solid var(--accent); color: var(--accent); font-size: 1rem; }
+        td.amount { text-align: right; font-family: 'Courier New', monospace; font-weight: 600; }
+        td.negative { color: var(--danger); }
+        td.positive { color: var(--success); }
 
         /* Bar Chart */
-        .chart-container {
-            margin: 3rem 0;
-        }
-
+        .chart-container { margin: 3rem 0; }
         .bar-chart {
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            gap: 2rem;
-            height: 300px;
-            padding: 2rem;
-            border-bottom: 2px solid var(--border);
-            margin-bottom: 1rem;
+            display: flex; justify-content: center; align-items: flex-end; gap: 2rem;
+            height: 300px; padding: 2rem; border-bottom: 2px solid var(--border); margin-bottom: 1rem;
         }
-
-        .bar-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .bar-pair {
-            display: flex;
-            align-items: flex-end;
-            gap: 4px;
-            height: 250px;
-        }
-
-        .bar {
-            width: 40px;
-            border-radius: 4px 4px 0 0;
-            position: relative;
-            transition: opacity 0.3s;
-        }
-
-        .bar:hover {
-            opacity: 0.8;
-        }
-
-        .bar.cogs {
-            background: linear-gradient(to top, #e74c3c, #c0392b);
-        }
-
-        .bar.revenue {
-            background: linear-gradient(to top, #27ae60, #2ecc71);
-        }
-
-        .bar-label {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            font-weight: 600;
-        }
-
-        .bar-value {
-            font-size: 0.7rem;
-            color: var(--text);
-            writing-mode: vertical-rl;
-            transform: rotate(180deg);
-            padding: 5px 0;
-            font-family: 'Courier New', monospace;
-        }
-
-        .chart-legend {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1rem;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .legend-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 3px;
-        }
-
+        .bar-group { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+        .bar-pair { display: flex; align-items: flex-end; gap: 4px; height: 250px; }
+        .bar { width: 40px; border-radius: 4px 4px 0 0; position: relative; transition: opacity 0.3s; }
+        .bar:hover { opacity: 0.8; }
+        .bar.cogs { background: linear-gradient(to top, #e74c3c, #c0392b); }
+        .bar.revenue { background: linear-gradient(to top, #27ae60, #2ecc71); }
+        .bar-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; }
+        .bar-value { font-size: 0.7rem; color: var(--text); writing-mode: vertical-rl; transform: rotate(180deg); padding: 5px 0; font-family: 'Courier New', monospace; }
+        .chart-legend { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; }
+        .legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-muted); }
+        .legend-dot { width: 12px; height: 12px; border-radius: 3px; }
         .legend-dot.cogs { background: #e74c3c; }
         .legend-dot.revenue { background: #27ae60; }
 
-        /* Timeline */
-        .timeline {
-            position: relative;
-            padding: 2rem 0;
-        }
+        /* Recon Box */
+        .recon-box { max-width: 600px; margin: 3rem auto; background: var(--card-bg); border: 2px solid var(--accent); border-radius: 12px; padding: 2.5rem; }
+        .recon-row { display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid var(--border); font-size: 0.95rem; }
+        .recon-row:last-child { border-bottom: none; }
+        .recon-row.total { border-top: 2px solid var(--accent); border-bottom: none; margin-top: 0.5rem; padding-top: 1rem; font-size: 1.3rem; font-weight: 700; }
+        .recon-row.total .recon-value { color: var(--danger); font-size: 1.5rem; }
+        .recon-label { color: var(--text-muted); }
+        .recon-value { font-family: 'Courier New', monospace; font-weight: 600; }
 
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: var(--border);
-        }
-
-        .timeline-item {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 2rem 0;
-            position: relative;
-        }
-
-        .timeline-item .tl-content {
-            width: 45%;
-            padding: 1.5rem;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-        }
-
-        .timeline-item:nth-child(odd) .tl-content {
-            margin-right: auto;
-            text-align: right;
-        }
-
-        .timeline-item:nth-child(even) .tl-content {
-            margin-left: auto;
-        }
-
-        .timeline-item .tl-dot {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: var(--accent);
-            border: 3px solid var(--primary);
-            z-index: 1;
-        }
-
-        .tl-date {
-            font-size: 0.8rem;
-            color: var(--accent);
-            letter-spacing: 1px;
-            margin-bottom: 0.3rem;
-        }
-
-        .tl-amount {
-            font-size: 1.2rem;
-            font-weight: 700;
-            font-family: 'Courier New', monospace;
-        }
-
-        .tl-amount.out { color: var(--danger); }
-        .tl-amount.in { color: var(--success); }
-
-        .tl-desc {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 0.3rem;
-        }
-
-        /* Reconciliation Box */
-        .recon-box {
-            max-width: 600px;
-            margin: 3rem auto;
-            background: var(--card-bg);
-            border: 2px solid var(--accent);
-            border-radius: 12px;
-            padding: 2.5rem;
-        }
-
-        .recon-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.95rem;
-        }
-
-        .recon-row:last-child {
-            border-bottom: none;
-        }
-
-        .recon-row.total {
-            border-top: 2px solid var(--accent);
-            border-bottom: none;
-            margin-top: 0.5rem;
-            padding-top: 1rem;
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
-
-        .recon-row.total .recon-value {
-            color: var(--danger);
-            font-size: 1.5rem;
-        }
-
-        .recon-label {
-            color: var(--text-muted);
-        }
-
-        .recon-value {
-            font-family: 'Courier New', monospace;
-            font-weight: 600;
-        }
-
-        /* Margin Analysis */
-        .margin-comparison {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .margin-card {
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            border: 1px solid var(--border);
-        }
-
-        .margin-card.expected {
-            background: rgba(39, 174, 96, 0.1);
-            border-color: var(--success);
-        }
-
-        .margin-card.actual {
-            background: rgba(231, 76, 60, 0.1);
-            border-color: var(--danger);
-        }
-
-        .margin-card h3 {
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .margin-card .big-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            font-family: 'Courier New', monospace;
-        }
-
+        /* Margin Cards */
+        .margin-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0; }
+        .margin-card { padding: 2rem; border-radius: 12px; text-align: center; border: 1px solid var(--border); }
+        .margin-card.expected { background: rgba(39, 174, 96, 0.1); border-color: var(--success); }
+        .margin-card.actual { background: rgba(231, 76, 60, 0.1); border-color: var(--danger); }
+        .margin-card h3 { font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; }
+        .margin-card .big-number { font-size: 2.5rem; font-weight: 700; font-family: 'Courier New', monospace; }
         .margin-card.expected .big-number { color: var(--success); }
         .margin-card.actual .big-number { color: var(--danger); }
-
-        .margin-card .detail {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 0.5rem;
-        }
+        .margin-card .detail { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; }
 
         /* Resolution Cards */
-        .resolution-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
+        .resolution-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
         .resolution-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: border-color 0.3s, transform 0.3s;
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
+            padding: 2rem; transition: border-color 0.3s, transform 0.3s;
         }
-
-        .resolution-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-3px);
-        }
-
-        .resolution-card.recommended {
-            border-color: var(--accent);
-            position: relative;
-        }
-
+        .resolution-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+        .resolution-card.recommended { border-color: var(--accent); position: relative; }
         .resolution-card.recommended::before {
-            content: 'RECOMMENDED';
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent);
-            color: var(--primary);
-            padding: 2px 12px;
-            border-radius: 10px;
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 2px;
+            content: attr(data-badge); position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+            background: var(--accent); color: var(--primary); padding: 2px 12px; border-radius: 10px;
+            font-size: 0.65rem; font-weight: 700; letter-spacing: 2px;
         }
+        .resolution-card h3 { color: var(--accent); font-size: 1.1rem; margin-bottom: 1rem; font-weight: 600; }
+        .resolution-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
+        .resolution-card .amount-highlight { font-size: 1.5rem; font-weight: 700; color: var(--accent); margin: 1rem 0; font-family: 'Courier New', monospace; }
 
-        .resolution-card h3 {
-            color: var(--accent);
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .resolution-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.7;
-        }
-
-        .resolution-card .amount-highlight {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent);
-            margin: 1rem 0;
-            font-family: 'Courier New', monospace;
-        }
-
-        /* Payment Progress */
-        .progress-bar-container {
-            margin: 2rem 0;
-        }
-
-        .progress-labels {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            font-size: 0.85rem;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 30px;
-            background: var(--card-bg);
-            border-radius: 15px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            position: relative;
-        }
-
-        .progress-fill {
-            height: 100%;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .progress-fill.paid {
-            background: linear-gradient(90deg, #27ae60, #2ecc71);
-            width: 82.6%;
-        }
-
-        .progress-remaining {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 0.75rem;
-            color: var(--danger);
-            font-weight: 700;
-        }
+        /* Progress Bar */
+        .progress-bar-container { margin: 2rem 0; }
+        .progress-labels { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.85rem; }
+        .progress-bar { width: 100%; height: 30px; background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid var(--border); position: relative; }
+        .progress-fill { height: 100%; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: var(--primary); }
+        .progress-fill.paid { background: linear-gradient(90deg, #27ae60, #2ecc71); width: 82.6%; }
+        .progress-remaining { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 0.75rem; color: var(--danger); font-weight: 700; }
 
         /* Footer */
-        footer {
-            background: var(--gradient-start);
-            border-top: 1px solid var(--border);
-            padding: 3rem 2rem;
-            text-align: center;
-        }
+        footer { background: var(--gradient-start); border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; }
+        footer .footer-logo { font-size: 1.2rem; font-weight: 700; color: var(--accent); letter-spacing: 3px; margin-bottom: 1rem; }
+        footer p { color: var(--text-muted); font-size: 0.85rem; margin: 0.3rem 0; }
+        footer .disclaimer { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.75rem; color: #5a6a7a; max-width: 700px; margin-left: auto; margin-right: auto; }
 
-        footer .footer-logo {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--accent);
-            letter-spacing: 3px;
-            margin-bottom: 1rem;
-        }
-
-        footer p {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin: 0.3rem 0;
-        }
-
-        footer .disclaimer {
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border);
-            font-size: 0.75rem;
-            color: #5a6a7a;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Print styles */
-        @media print {
-            nav { display: none; }
-            .hero { min-height: auto; padding: 3rem 0; }
-            section { padding: 2rem; }
-            .kpi-card, .resolution-card { break-inside: avoid; }
-        }
-
-        /* Responsive */
+        @media print { nav { display: none; } .hero { min-height: auto; padding: 3rem 0; } section { padding: 2rem; } }
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; letter-spacing: 3px; }
             .hero .subtitle { font-size: 1rem; }
             nav .nav-links { display: none; }
             .margin-comparison { grid-template-columns: 1fr; }
-            .timeline::before { left: 20px; }
-            .timeline-item .tl-content { width: 80%; margin-left: 50px !important; text-align: left !important; }
-            .timeline-item .tl-dot { left: 20px; }
             .bar-chart { gap: 1rem; }
             .bar { width: 25px; }
             .kpi-card .kpi-value { font-size: 1.4rem; }
@@ -859,18 +261,36 @@
     <div class="auth-container">
         <div class="auth-logo">CCJO PARTNERS</div>
         <div class="auth-divider"></div>
-        <p class="auth-label">CONFIDENTIAL DOCUMENT</p>
-        <p class="auth-sub">Enter the access code provided to you to view this presentation.</p>
+        <p class="auth-label">
+            <span class="lang-en">CONFIDENTIAL DOCUMENT</span>
+            <span class="lang-es">DOCUMENTO CONFIDENCIAL</span>
+        </p>
+        <p class="auth-sub">
+            <span class="lang-en">Enter the access code provided to you to view this presentation.</span>
+            <span class="lang-es">Ingrese el codigo de acceso proporcionado para ver esta presentacion.</span>
+        </p>
         <form id="auth-form" onsubmit="return checkPassword()">
             <input type="password" id="auth-input" placeholder="Access Code" autocomplete="off" />
-            <button type="submit">Enter</button>
+            <button type="submit">
+                <span class="lang-en">Enter</span>
+                <span class="lang-es">Ingresar</span>
+            </button>
         </form>
         <p id="auth-error" class="auth-error"></p>
-        <p class="auth-footer">CCJO Partners Trading LLC &mdash; Authorized Access Only</p>
+        <p class="auth-footer">CCJO Partners Trading LLC &mdash;
+            <span class="lang-en">Authorized Access Only</span>
+            <span class="lang-es">Solo Acceso Autorizado</span>
+        </p>
+        <div style="margin-top: 1.5rem;">
+            <div class="lang-toggle" style="display: inline-flex;">
+                <button class="lang-btn active" onclick="setLang('en')">EN</button>
+                <button class="lang-btn" onclick="setLang('es')">ES</button>
+            </div>
+        </div>
     </div>
 </div>
 
-<!-- Main Content (hidden until authenticated) -->
+<!-- Main Content -->
 <div id="main-content" style="display: none;">
 
 <!-- Navigation -->
@@ -878,12 +298,18 @@
     <div class="nav-inner">
         <div class="logo">CCJO PARTNERS</div>
         <ul class="nav-links">
-            <li><a href="#overview">Overview</a></li>
-            <li><a href="#investment">Investment</a></li>
-            <li><a href="#transactions">Transactions</a></li>
-            <li><a href="#analysis">Analysis</a></li>
-            <li><a href="#balance">Balance Due</a></li>
-            <li><a href="#resolution">Resolution</a></li>
+            <li><a href="#overview"><span class="lang-en">Overview</span><span class="lang-es">Resumen</span></a></li>
+            <li><a href="#investment"><span class="lang-en">Investment</span><span class="lang-es">Inversion</span></a></li>
+            <li><a href="#transactions"><span class="lang-en">Transactions</span><span class="lang-es">Transacciones</span></a></li>
+            <li><a href="#analysis"><span class="lang-en">Analysis</span><span class="lang-es">Analisis</span></a></li>
+            <li><a href="#balance"><span class="lang-en">Balance Due</span><span class="lang-es">Saldo Pendiente</span></a></li>
+            <li><a href="#resolution"><span class="lang-en">Resolution</span><span class="lang-es">Resolucion</span></a></li>
+            <li>
+                <div class="lang-toggle">
+                    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+                    <button class="lang-btn" onclick="setLang('es')">ES</button>
+                </div>
+            </li>
         </ul>
     </div>
 </nav>
@@ -895,11 +321,12 @@
         <div class="subtitle">TRADING LLC</div>
         <div class="divider"></div>
         <p style="font-size: 1.4rem; font-weight: 300; letter-spacing: 2px; margin-bottom: 2rem;">
-            Business Review &amp; Account Reconciliation
+            <span class="lang-en">Business Review &amp; Account Reconciliation</span>
+            <span class="lang-es">Revision Comercial &amp; Conciliacion de Cuentas</span>
         </p>
         <div class="meeting-info">
-            <p>Meeting with <strong>Carrieles SAS</strong></p>
-            <p>Period: <strong>June 2022 &mdash; December 2024</strong></p>
+            <p><span class="lang-en">Meeting with</span><span class="lang-es">Reunion con</span> <strong>Carrieles SAS</strong></p>
+            <p><span class="lang-en">Period:</span><span class="lang-es">Periodo:</span> <strong><span class="lang-en">June 2022 &mdash; December 2024</span><span class="lang-es">Junio 2022 &mdash; Diciembre 2024</span></strong></p>
         </div>
     </div>
     <a href="#overview" class="scroll-indicator">&#8595;</a>
@@ -909,450 +336,203 @@
 <div class="bg-dark">
 <section id="overview">
     <div class="section-header">
-        <div class="section-number">Section 01</div>
-        <h2>Business Relationship</h2>
+        <div class="section-number"><span class="lang-en">Section 01</span><span class="lang-es">Seccion 01</span></div>
+        <h2><span class="lang-en">Business Relationship</span><span class="lang-es">Relacion Comercial</span></h2>
         <div class="section-line"></div>
-        <p>CCJO Partners has served as the steel procurement and logistics partner for Carrieles SAS since June 2022</p>
+        <p><span class="lang-en">CCJO Partners has served as the steel procurement and logistics partner for Carrieles SAS since June 2022</span><span class="lang-es">CCJO Partners ha sido el socio de adquisicion de acero y logistica para Carrieles SAS desde junio de 2022</span></p>
     </div>
-
     <div class="kpi-grid">
         <div class="kpi-card">
-            <div class="kpi-label">Relationship Start</div>
-            <div class="kpi-value">Jun 2022</div>
-            <div class="kpi-sub">30+ months partnership</div>
+            <div class="kpi-label"><span class="lang-en">Relationship Start</span><span class="lang-es">Inicio de Relacion</span></div>
+            <div class="kpi-value"><span class="lang-en">Jun 2022</span><span class="lang-es">Jun 2022</span></div>
+            <div class="kpi-sub"><span class="lang-en">30+ months partnership</span><span class="lang-es">Mas de 30 meses de alianza</span></div>
         </div>
         <div class="kpi-card">
-            <div class="kpi-label">Steel Purchased</div>
+            <div class="kpi-label"><span class="lang-en">Steel Purchased</span><span class="lang-es">Acero Comprado</span></div>
             <div class="kpi-value">$220,612</div>
-            <div class="kpi-sub">7 shipments from China</div>
+            <div class="kpi-sub"><span class="lang-en">7 shipments from China</span><span class="lang-es">7 embarques desde China</span></div>
         </div>
         <div class="kpi-card">
-            <div class="kpi-label">Payments Received</div>
+            <div class="kpi-label"><span class="lang-en">Payments Received</span><span class="lang-es">Pagos Recibidos</span></div>
             <div class="kpi-value">$182,331</div>
-            <div class="kpi-sub">6 wire transfers from Carrieles</div>
+            <div class="kpi-sub"><span class="lang-en">6 wire transfers from Carrieles</span><span class="lang-es">6 transferencias de Carrieles</span></div>
         </div>
         <div class="kpi-card">
-            <div class="kpi-label">Outstanding Balance</div>
+            <div class="kpi-label"><span class="lang-en">Outstanding Balance</span><span class="lang-es">Saldo Pendiente</span></div>
             <div class="kpi-value danger">$38,281</div>
-            <div class="kpi-sub">Owed to CCJO Partners</div>
+            <div class="kpi-sub"><span class="lang-en">Owed to CCJO Partners</span><span class="lang-es">Adeudado a CCJO Partners</span></div>
         </div>
     </div>
-
-    <!-- Payment Progress -->
     <div class="progress-bar-container" style="margin-top: 3rem;">
         <div class="progress-labels">
-            <span style="color: var(--success);">Paid: $182,330.50 (82.6%)</span>
-            <span style="color: var(--danger);">Remaining: $38,281.42 (17.4%)</span>
+            <span style="color: var(--success);"><span class="lang-en">Paid: $182,330.50 (82.6%)</span><span class="lang-es">Pagado: $182,330.50 (82.6%)</span></span>
+            <span style="color: var(--danger);"><span class="lang-en">Remaining: $38,281.42 (17.4%)</span><span class="lang-es">Pendiente: $38,281.42 (17.4%)</span></span>
         </div>
         <div class="progress-bar">
-            <div class="progress-fill paid">$182,330.50 RECEIVED</div>
-            <span class="progress-remaining">$38,281.42 DUE</span>
+            <div class="progress-fill paid"><span class="lang-en">$182,330.50 RECEIVED</span><span class="lang-es">$182,330.50 RECIBIDO</span></div>
+            <span class="progress-remaining"><span class="lang-en">$38,281.42 DUE</span><span class="lang-es">$38,281.42 PENDIENTE</span></span>
         </div>
         <p style="text-align: center; margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">
-            Of $220,611.92 total steel purchased for Carrieles SAS
+            <span class="lang-en">Of $220,611.92 total steel purchased for Carrieles SAS</span>
+            <span class="lang-es">De $220,611.92 total de acero comprado para Carrieles SAS</span>
         </p>
     </div>
 </section>
 </div>
 
-<!-- Section 2: Owner Investment & Capital -->
+<!-- Section 2: Owner Investment -->
 <section id="investment">
     <div class="section-header">
-        <div class="section-number">Section 02</div>
-        <h2>Owner's Investment &amp; Capital Deposits</h2>
+        <div class="section-number"><span class="lang-en">Section 02</span><span class="lang-es">Seccion 02</span></div>
+        <h2><span class="lang-en">Owner's Investment &amp; Capital Deposits</span><span class="lang-es">Inversion del Propietario &amp; Depositos de Capital</span></h2>
         <div class="section-line"></div>
-        <p>All personal capital contributed by Carlos Moreno to fund CCJO's steel trading operations</p>
+        <p><span class="lang-en">All personal capital contributed by Carlos Moreno to fund CCJO's steel trading operations</span><span class="lang-es">Todo el capital personal aportado por Carlos Moreno para financiar las operaciones de comercio de acero de CCJO</span></p>
     </div>
-
     <div class="kpi-grid">
         <div class="kpi-card">
-            <div class="kpi-label">Total Capital Invested</div>
+            <div class="kpi-label"><span class="lang-en">Total Capital Invested</span><span class="lang-es">Capital Total Invertido</span></div>
             <div class="kpi-value">$67,050</div>
-            <div class="kpi-sub">Personal funds from Carlos Moreno</div>
+            <div class="kpi-sub"><span class="lang-en">Personal funds from Carlos Moreno</span><span class="lang-es">Fondos personales de Carlos Moreno</span></div>
         </div>
         <div class="kpi-card">
-            <div class="kpi-label">Initial Capitalization</div>
+            <div class="kpi-label"><span class="lang-en">Initial Capitalization</span><span class="lang-es">Capitalizacion Inicial</span></div>
             <div class="kpi-value">$66,050</div>
-            <div class="kpi-sub">June &ndash; August 2022</div>
+            <div class="kpi-sub"><span class="lang-en">June &ndash; August 2022</span><span class="lang-es">Junio &ndash; Agosto 2022</span></div>
         </div>
         <div class="kpi-card">
-            <div class="kpi-label">Additional Contributions</div>
+            <div class="kpi-label"><span class="lang-en">Additional Contributions</span><span class="lang-es">Aportes Adicionales</span></div>
             <div class="kpi-value">$1,000</div>
-            <div class="kpi-sub">2023 &ndash; 2025 to sustain operations</div>
+            <div class="kpi-sub"><span class="lang-en">2023 &ndash; 2025 to sustain operations</span><span class="lang-es">2023 &ndash; 2025 para sostener operaciones</span></div>
         </div>
         <div class="kpi-card">
-            <div class="kpi-label">Returned to Owner</div>
+            <div class="kpi-label"><span class="lang-en">Returned to Owner</span><span class="lang-es">Devuelto al Propietario</span></div>
             <div class="kpi-value danger">$26,835</div>
-            <div class="kpi-sub">Draws + remaining cash</div>
+            <div class="kpi-sub"><span class="lang-en">Draws + remaining cash</span><span class="lang-es">Retiros + efectivo restante</span></div>
         </div>
     </div>
 
-    <h3 style="color: var(--accent); margin: 3rem 0 1rem; font-weight: 400; letter-spacing: 1px;">Initial Capitalization &mdash; 2022</h3>
+    <h3 style="color: var(--accent); margin: 3rem 0 1rem; font-weight: 400; letter-spacing: 1px;"><span class="lang-en">Initial Capitalization &mdash; 2022</span><span class="lang-es">Capitalizacion Inicial &mdash; 2022</span></h3>
     <div class="table-container">
         <table>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Date</th>
-                    <th>Description</th>
-                    <th>Account</th>
-                    <th>Amount (USD)</th>
-                    <th>Running Total</th>
-                </tr>
-            </thead>
+            <thead><tr>
+                <th>#</th>
+                <th><span class="lang-en">Date</span><span class="lang-es">Fecha</span></th>
+                <th><span class="lang-en">Description</span><span class="lang-es">Descripcion</span></th>
+                <th><span class="lang-en">Account</span><span class="lang-es">Cuenta</span></th>
+                <th><span class="lang-en">Amount (USD)</span><span class="lang-es">Monto (USD)</span></th>
+                <th><span class="lang-en">Running Total</span><span class="lang-es">Total Acumulado</span></th>
+            </tr></thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>June 27, 2022</td>
-                    <td>Mobile Deposit &mdash; Opening capital</td>
-                    <td>Checking</td>
-                    <td class="amount">$25.00</td>
-                    <td class="amount">$25.00</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>June 27, 2022</td>
-                    <td>Mobile Deposit &mdash; Opening capital</td>
-                    <td>Savings</td>
-                    <td class="amount">$25.00</td>
-                    <td class="amount">$50.00</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>June 28, 2022</td>
-                    <td>Deposit &mdash; Primary capitalization</td>
-                    <td>Checking</td>
-                    <td class="amount" style="color: var(--accent); font-size: 1.05rem;">$48,000.00</td>
-                    <td class="amount">$48,050.00</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>July 8, 2022</td>
-                    <td>eDeposit in Branch &mdash; Eagan, MN</td>
-                    <td>Checking</td>
-                    <td class="amount">$200.00</td>
-                    <td class="amount">$48,250.00</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>August 29, 2022</td>
-                    <td>Deposit &mdash; Additional capital for 3rd shipment</td>
-                    <td>Checking</td>
-                    <td class="amount" style="color: var(--accent); font-size: 1.05rem;">$17,800.00</td>
-                    <td class="amount">$66,050.00</td>
-                </tr>
-                <tr class="total-row">
-                    <td></td>
-                    <td></td>
-                    <td>TOTAL INITIAL CAPITALIZATION</td>
-                    <td></td>
-                    <td class="amount">$66,050.00</td>
-                    <td class="amount">$66,050.00</td>
-                </tr>
+                <tr><td>1</td><td>June 27, 2022</td><td><span class="lang-en">Mobile Deposit &mdash; Opening capital</span><span class="lang-es">Deposito movil &mdash; Capital inicial</span></td><td>Checking</td><td class="amount">$25.00</td><td class="amount">$25.00</td></tr>
+                <tr><td>2</td><td>June 27, 2022</td><td><span class="lang-en">Mobile Deposit &mdash; Opening capital</span><span class="lang-es">Deposito movil &mdash; Capital inicial</span></td><td>Savings</td><td class="amount">$25.00</td><td class="amount">$50.00</td></tr>
+                <tr><td>3</td><td>June 28, 2022</td><td><span class="lang-en">Deposit &mdash; Primary capitalization</span><span class="lang-es">Deposito &mdash; Capitalizacion principal</span></td><td>Checking</td><td class="amount" style="color: var(--accent); font-size: 1.05rem;">$48,000.00</td><td class="amount">$48,050.00</td></tr>
+                <tr><td>4</td><td>July 8, 2022</td><td><span class="lang-en">Branch Deposit &mdash; Eagan, MN</span><span class="lang-es">Deposito en sucursal &mdash; Eagan, MN</span></td><td>Checking</td><td class="amount">$200.00</td><td class="amount">$48,250.00</td></tr>
+                <tr><td>5</td><td>August 29, 2022</td><td><span class="lang-en">Deposit &mdash; Additional capital for 3rd shipment</span><span class="lang-es">Deposito &mdash; Capital adicional para 3er embarque</span></td><td>Checking</td><td class="amount" style="color: var(--accent); font-size: 1.05rem;">$17,800.00</td><td class="amount">$66,050.00</td></tr>
+                <tr class="total-row"><td></td><td></td><td><span class="lang-en">TOTAL INITIAL CAPITALIZATION</span><span class="lang-es">TOTAL CAPITALIZACION INICIAL</span></td><td></td><td class="amount">$66,050.00</td><td class="amount">$66,050.00</td></tr>
             </tbody>
         </table>
     </div>
 
-    <h3 style="color: var(--accent); margin: 3rem 0 1rem; font-weight: 400; letter-spacing: 1px;">Additional Capital Contributions &mdash; 2023 &ndash; 2025</h3>
+    <h3 style="color: var(--accent); margin: 3rem 0 1rem; font-weight: 400; letter-spacing: 1px;"><span class="lang-en">Additional Capital Contributions &mdash; 2023&ndash;2025</span><span class="lang-es">Aportes de Capital Adicionales &mdash; 2023&ndash;2025</span></h3>
     <div class="table-container">
         <table>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Date</th>
-                    <th>Description</th>
-                    <th>Account</th>
-                    <th>Amount (USD)</th>
-                    <th>Purpose</th>
-                </tr>
-            </thead>
+            <thead><tr><th>#</th><th><span class="lang-en">Date</span><span class="lang-es">Fecha</span></th><th><span class="lang-en">Description</span><span class="lang-es">Descripcion</span></th><th><span class="lang-en">Account</span><span class="lang-es">Cuenta</span></th><th><span class="lang-en">Amount (USD)</span><span class="lang-es">Monto (USD)</span></th><th><span class="lang-en">Purpose</span><span class="lang-es">Proposito</span></th></tr></thead>
             <tbody>
-                <tr>
-                    <td>6</td>
-                    <td>October 4, 2023</td>
-                    <td>eDeposit in Branch &mdash; Eagan, MN</td>
-                    <td>Checking</td>
-                    <td class="amount">$400.00</td>
-                    <td>Cover overdraft from credit card auto-pay</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>November 6, 2023</td>
-                    <td>Mobile Deposit</td>
-                    <td>Checking</td>
-                    <td class="amount">$400.00</td>
-                    <td>Cover overdraft from credit card auto-pay</td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>February 3, 2025</td>
-                    <td>eDeposit in Branch &mdash; Eagan, MN</td>
-                    <td>Checking</td>
-                    <td class="amount">$100.00</td>
-                    <td>Prevent account closure (monthly fees)</td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>June 2, 2025</td>
-                    <td>Zelle from Carlos Moreno</td>
-                    <td>Checking</td>
-                    <td class="amount">$100.00</td>
-                    <td>Prevent account closure (monthly fees)</td>
-                </tr>
-                <tr class="total-row">
-                    <td></td>
-                    <td></td>
-                    <td>TOTAL ADDITIONAL CONTRIBUTIONS</td>
-                    <td></td>
-                    <td class="amount">$1,000.00</td>
-                    <td></td>
-                </tr>
+                <tr><td>6</td><td>Oct 4, 2023</td><td><span class="lang-en">Branch Deposit &mdash; Eagan, MN</span><span class="lang-es">Deposito en sucursal &mdash; Eagan, MN</span></td><td>Checking</td><td class="amount">$400.00</td><td><span class="lang-en">Cover overdraft</span><span class="lang-es">Cubrir sobregiro</span></td></tr>
+                <tr><td>7</td><td>Nov 6, 2023</td><td><span class="lang-en">Mobile Deposit</span><span class="lang-es">Deposito movil</span></td><td>Checking</td><td class="amount">$400.00</td><td><span class="lang-en">Cover overdraft</span><span class="lang-es">Cubrir sobregiro</span></td></tr>
+                <tr><td>8</td><td>Feb 3, 2025</td><td><span class="lang-en">Branch Deposit &mdash; Eagan, MN</span><span class="lang-es">Deposito en sucursal &mdash; Eagan, MN</span></td><td>Checking</td><td class="amount">$100.00</td><td><span class="lang-en">Prevent account closure</span><span class="lang-es">Evitar cierre de cuenta</span></td></tr>
+                <tr><td>9</td><td>Jun 2, 2025</td><td>Zelle &mdash; Carlos Moreno</td><td>Checking</td><td class="amount">$100.00</td><td><span class="lang-en">Prevent account closure</span><span class="lang-es">Evitar cierre de cuenta</span></td></tr>
+                <tr class="total-row"><td></td><td></td><td><span class="lang-en">TOTAL ADDITIONAL CONTRIBUTIONS</span><span class="lang-es">TOTAL APORTES ADICIONALES</span></td><td></td><td class="amount">$1,000.00</td><td></td></tr>
             </tbody>
         </table>
     </div>
 
-    <h3 style="color: var(--accent); margin: 3rem 0 1rem; font-weight: 400; letter-spacing: 1px;">Owner's Draws (Cash Returned to Owner)</h3>
+    <h3 style="color: var(--accent); margin: 3rem 0 1rem; font-weight: 400; letter-spacing: 1px;"><span class="lang-en">Owner's Draws (Cash Returned to Owner)</span><span class="lang-es">Retiros del Propietario (Efectivo Devuelto)</span></h3>
     <div class="table-container">
         <table>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Date</th>
-                    <th>Description</th>
-                    <th>Account</th>
-                    <th>Amount (USD)</th>
-                </tr>
-            </thead>
+            <thead><tr><th>#</th><th><span class="lang-en">Date</span><span class="lang-es">Fecha</span></th><th><span class="lang-en">Description</span><span class="lang-es">Descripcion</span></th><th><span class="lang-en">Account</span><span class="lang-es">Cuenta</span></th><th><span class="lang-en">Amount (USD)</span><span class="lang-es">Monto (USD)</span></th></tr></thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>March 22, 2024</td>
-                    <td>Branch/Store Withdrawal &mdash; Personal draw</td>
-                    <td>Checking</td>
-                    <td class="amount">$26,010.00</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>July 16, 2024</td>
-                    <td>Cash Withdrawal at Branch &mdash; Eagan, MN</td>
-                    <td>Checking</td>
-                    <td class="amount">$800.00</td>
-                </tr>
-                <tr class="total-row">
-                    <td></td>
-                    <td></td>
-                    <td>TOTAL OWNER'S DRAWS</td>
-                    <td></td>
-                    <td class="amount">$26,810.00</td>
-                </tr>
+                <tr><td>1</td><td>Mar 22, 2024</td><td><span class="lang-en">Branch Withdrawal &mdash; Personal draw</span><span class="lang-es">Retiro en sucursal &mdash; Retiro personal</span></td><td>Checking</td><td class="amount">$26,010.00</td></tr>
+                <tr><td>2</td><td>Jul 16, 2024</td><td><span class="lang-en">Cash Withdrawal &mdash; Eagan, MN</span><span class="lang-es">Retiro en efectivo &mdash; Eagan, MN</span></td><td>Checking</td><td class="amount">$800.00</td></tr>
+                <tr class="total-row"><td></td><td></td><td><span class="lang-en">TOTAL OWNER'S DRAWS</span><span class="lang-es">TOTAL RETIROS DEL PROPIETARIO</span></td><td></td><td class="amount">$26,810.00</td></tr>
             </tbody>
         </table>
     </div>
 
-    <!-- Net Investment Summary -->
-    <!-- Operating Expenses Year by Year -->
-    <h3 style="color: var(--accent); margin: 3rem 0 1rem; font-weight: 400; letter-spacing: 1px;">Operating Expenses &mdash; Year by Year</h3>
-
+    <!-- Operating Expenses -->
+    <h3 style="color: var(--accent); margin: 3rem 0 1rem; font-weight: 400; letter-spacing: 1px;"><span class="lang-en">Operating Expenses &mdash; Year by Year</span><span class="lang-es">Gastos Operativos &mdash; Por Ano</span></h3>
     <div class="table-container">
         <table>
-            <thead>
-                <tr>
-                    <th>Expense Category</th>
-                    <th>FY 2022 (Jun-Dec)</th>
-                    <th>FY 2023</th>
-                    <th>FY 2024</th>
-                    <th>FY 2025 (Jan-Oct)</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
+            <thead><tr>
+                <th><span class="lang-en">Expense Category</span><span class="lang-es">Categoria de Gasto</span></th>
+                <th>FY 2022</th><th>FY 2023</th><th>FY 2024</th><th>FY 2025 (YTD)</th><th>Total</th>
+            </tr></thead>
             <tbody>
-                <tr>
-                    <td>Wire Transfer Fees &mdash; Outgoing</td>
-                    <td class="amount">$135.00</td>
-                    <td class="amount">$115.00</td>
-                    <td class="amount">$25.00</td>
-                    <td class="amount">$0.00</td>
-                    <td class="amount" style="color: var(--accent);">$275.00</td>
-                </tr>
-                <tr>
-                    <td>Wire Transfer Fees &mdash; Incoming</td>
-                    <td class="amount">$15.00</td>
-                    <td class="amount">$46.00</td>
-                    <td class="amount">$15.00</td>
-                    <td class="amount">$0.00</td>
-                    <td class="amount" style="color: var(--accent);">$76.00</td>
-                </tr>
-                <tr>
-                    <td>Bank Monthly Service Fees</td>
-                    <td class="amount">$55.00</td>
-                    <td class="amount">$80.00</td>
-                    <td class="amount">$120.00</td>
-                    <td class="amount">$145.00</td>
-                    <td class="amount" style="color: var(--accent);">$400.00</td>
-                </tr>
-                <tr>
-                    <td>Overdraft Fees</td>
-                    <td class="amount">$0.00</td>
-                    <td class="amount">$70.00</td>
-                    <td class="amount">$0.00</td>
-                    <td class="amount">$0.00</td>
-                    <td class="amount" style="color: var(--accent);">$70.00</td>
-                </tr>
-                <tr>
-                    <td>Business Credit Card Expenses</td>
-                    <td class="amount">$0.00</td>
-                    <td class="amount">$669.00</td>
-                    <td class="amount">$725.67</td>
-                    <td class="amount">$62.33</td>
-                    <td class="amount" style="color: var(--accent);">$1,457.00</td>
-                </tr>
-                <tr class="total-row">
-                    <td>TOTAL EXPENSES</td>
-                    <td class="amount">$205.00</td>
-                    <td class="amount">$980.00</td>
-                    <td class="amount">$885.67</td>
-                    <td class="amount">$207.33</td>
-                    <td class="amount">$2,278.00</td>
-                </tr>
-                <tr>
-                    <td style="color: var(--success);">Less: Interest Earned</td>
-                    <td class="amount positive">($3.73)</td>
-                    <td class="amount positive">($5.13)</td>
-                    <td class="amount positive">($0.29)</td>
-                    <td class="amount positive">$0.00</td>
-                    <td class="amount positive">($9.15)</td>
-                </tr>
-                <tr>
-                    <td style="color: var(--success);">Less: Credit Card Refund</td>
-                    <td class="amount positive">$0.00</td>
-                    <td class="amount positive">$0.00</td>
-                    <td class="amount positive">($50.00)</td>
-                    <td class="amount positive">$0.00</td>
-                    <td class="amount positive">($50.00)</td>
-                </tr>
-                <tr class="total-row">
-                    <td>NET OPERATING COST</td>
-                    <td class="amount">$201.27</td>
-                    <td class="amount">$974.87</td>
-                    <td class="amount">$835.38</td>
-                    <td class="amount">$207.33</td>
-                    <td class="amount" style="color: var(--danger); font-size: 1.1rem;">$2,218.85</td>
-                </tr>
+                <tr><td><span class="lang-en">Wire Transfer Fees &mdash; Outgoing</span><span class="lang-es">Comisiones de Transferencia &mdash; Salientes</span></td><td class="amount">$135.00</td><td class="amount">$115.00</td><td class="amount">$25.00</td><td class="amount">$0.00</td><td class="amount" style="color: var(--accent);">$275.00</td></tr>
+                <tr><td><span class="lang-en">Wire Transfer Fees &mdash; Incoming</span><span class="lang-es">Comisiones de Transferencia &mdash; Entrantes</span></td><td class="amount">$15.00</td><td class="amount">$46.00</td><td class="amount">$15.00</td><td class="amount">$0.00</td><td class="amount" style="color: var(--accent);">$76.00</td></tr>
+                <tr><td><span class="lang-en">Bank Monthly Service Fees</span><span class="lang-es">Comisiones Bancarias Mensuales</span></td><td class="amount">$55.00</td><td class="amount">$80.00</td><td class="amount">$120.00</td><td class="amount">$145.00</td><td class="amount" style="color: var(--accent);">$400.00</td></tr>
+                <tr><td><span class="lang-en">Overdraft Fees</span><span class="lang-es">Cargos por Sobregiro</span></td><td class="amount">$0.00</td><td class="amount">$70.00</td><td class="amount">$0.00</td><td class="amount">$0.00</td><td class="amount" style="color: var(--accent);">$70.00</td></tr>
+                <tr><td><span class="lang-en">Business Credit Card Expenses</span><span class="lang-es">Gastos de Tarjeta de Credito Comercial</span></td><td class="amount">$0.00</td><td class="amount">$669.00</td><td class="amount">$725.67</td><td class="amount">$62.33</td><td class="amount" style="color: var(--accent);">$1,457.00</td></tr>
+                <tr class="total-row"><td><span class="lang-en">TOTAL EXPENSES</span><span class="lang-es">TOTAL GASTOS</span></td><td class="amount">$205.00</td><td class="amount">$980.00</td><td class="amount">$885.67</td><td class="amount">$207.33</td><td class="amount">$2,278.00</td></tr>
+                <tr><td style="color: var(--success);"><span class="lang-en">Less: Interest Earned</span><span class="lang-es">Menos: Intereses Ganados</span></td><td class="amount positive">($3.73)</td><td class="amount positive">($5.13)</td><td class="amount positive">($0.29)</td><td class="amount positive">$0.00</td><td class="amount positive">($9.15)</td></tr>
+                <tr><td style="color: var(--success);"><span class="lang-en">Less: Credit Card Refund</span><span class="lang-es">Menos: Reembolso de Tarjeta</span></td><td class="amount positive">$0.00</td><td class="amount positive">$0.00</td><td class="amount positive">($50.00)</td><td class="amount positive">$0.00</td><td class="amount positive">($50.00)</td></tr>
+                <tr class="total-row"><td><span class="lang-en">NET OPERATING COST</span><span class="lang-es">COSTO OPERATIVO NETO</span></td><td class="amount">$201.27</td><td class="amount">$974.87</td><td class="amount">$835.38</td><td class="amount">$207.33</td><td class="amount" style="color: var(--danger); font-size: 1.1rem;">$2,218.85</td></tr>
             </tbody>
         </table>
     </div>
 
-    <div class="kpi-grid" style="margin-top: 2rem;">
-        <div class="kpi-card">
-            <div class="kpi-label">2022 Expenses</div>
-            <div class="kpi-value" style="font-size: 1.4rem;">$205.00</div>
-            <div class="kpi-sub">Startup &mdash; mostly wire fees</div>
-        </div>
-        <div class="kpi-card">
-            <div class="kpi-label">2023 Expenses</div>
-            <div class="kpi-value" style="font-size: 1.4rem;">$980.00</div>
-            <div class="kpi-sub">Peak activity + overdrafts</div>
-        </div>
-        <div class="kpi-card">
-            <div class="kpi-label">2024 Expenses</div>
-            <div class="kpi-value" style="font-size: 1.4rem;">$885.67</div>
-            <div class="kpi-sub">Mostly bank &amp; CC fees</div>
-        </div>
-        <div class="kpi-card">
-            <div class="kpi-label">2025 Expenses (YTD)</div>
-            <div class="kpi-value" style="font-size: 1.4rem;">$207.33</div>
-            <div class="kpi-sub">Dormant &mdash; fees only</div>
-        </div>
-    </div>
-
-    <!-- Net Owner Position with full breakdown -->
-    <h3 style="color: var(--accent); margin: 3rem 0 1rem; font-weight: 400; letter-spacing: 1px;">Net Owner Position &mdash; Full Breakdown</h3>
-
+    <!-- Net Owner Position -->
+    <h3 style="color: var(--accent); margin: 3rem 0 1rem; font-weight: 400; letter-spacing: 1px;"><span class="lang-en">Net Owner Position &mdash; Full Breakdown</span><span class="lang-es">Posicion Neta del Propietario &mdash; Desglose Completo</span></h3>
     <div class="recon-box" style="margin-top: 1rem;">
         <div style="text-align: center; margin-bottom: 1.5rem;">
-            <span style="font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent);">Where Did The Money Go?</span>
+            <span style="font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent);"><span class="lang-en">Where Did The Money Go?</span><span class="lang-es">A Donde Fue el Dinero?</span></span>
         </div>
-        <div class="recon-row">
-            <span class="recon-label">Total capital contributed by owner</span>
-            <span class="recon-value">$67,050.00</span>
-        </div>
-        <div class="recon-row">
-            <span class="recon-label">+ Revenue received from Carrieles</span>
-            <span class="recon-value" style="color: var(--success);">$182,330.50</span>
-        </div>
-        <div class="recon-row">
-            <span class="recon-label">+ Interest &amp; other income</span>
-            <span class="recon-value" style="color: var(--success);">$59.15</span>
-        </div>
-        <div class="recon-row" style="border-bottom: 2px solid var(--border); padding-bottom: 1rem;">
-            <span class="recon-label" style="color: var(--text); font-weight: 600;">TOTAL MONEY IN</span>
-            <span class="recon-value" style="color: var(--text);">$249,439.65</span>
-        </div>
-        <div class="recon-row" style="padding-top: 1rem;">
-            <span class="recon-label">&minus; Paid to Glory Diamond (steel)</span>
-            <span class="recon-value" style="color: var(--danger);">($220,611.92)</span>
-        </div>
-        <div class="recon-row">
-            <span class="recon-label">&minus; Owner's draws</span>
-            <span class="recon-value" style="color: var(--danger);">($26,810.00)</span>
-        </div>
-        <div class="recon-row" style="border-bottom: 2px solid var(--border); padding-bottom: 1rem;">
-            <span class="recon-label">&minus; Operating expenses (fees &amp; costs)</span>
-            <span class="recon-value" style="color: var(--danger);">($1,993.00)</span>
-        </div>
-        <div class="recon-row" style="padding-top: 1rem;">
-            <span class="recon-label">Cash remaining in accounts</span>
-            <span class="recon-value">$24.73</span>
-        </div>
-        <div class="recon-row" style="border: none; padding-top: 1.5rem; margin-top: 0.5rem; border-top: 2px solid var(--accent);">
-            <span style="color: var(--text); font-weight: 700; font-size: 1rem;">OWNER'S NET LOSS</span>
-            <span class="recon-value" style="color: var(--danger); font-size: 1.5rem;">$40,215.27</span>
-        </div>
+        <div class="recon-row"><span class="recon-label"><span class="lang-en">Total capital contributed by owner</span><span class="lang-es">Total capital aportado por el propietario</span></span><span class="recon-value">$67,050.00</span></div>
+        <div class="recon-row"><span class="recon-label"><span class="lang-en">+ Revenue received from Carrieles</span><span class="lang-es">+ Ingresos recibidos de Carrieles</span></span><span class="recon-value" style="color: var(--success);">$182,330.50</span></div>
+        <div class="recon-row"><span class="recon-label"><span class="lang-en">+ Interest &amp; other income</span><span class="lang-es">+ Intereses y otros ingresos</span></span><span class="recon-value" style="color: var(--success);">$59.15</span></div>
+        <div class="recon-row" style="border-bottom: 2px solid var(--border); padding-bottom: 1rem;"><span class="recon-label" style="color: var(--text); font-weight: 600;"><span class="lang-en">TOTAL MONEY IN</span><span class="lang-es">TOTAL DINERO INGRESADO</span></span><span class="recon-value" style="color: var(--text);">$249,439.65</span></div>
+        <div class="recon-row" style="padding-top: 1rem;"><span class="recon-label"><span class="lang-en">&minus; Paid to Glory Diamond (steel)</span><span class="lang-es">&minus; Pagado a Glory Diamond (acero)</span></span><span class="recon-value" style="color: var(--danger);">($220,611.92)</span></div>
+        <div class="recon-row"><span class="recon-label"><span class="lang-en">&minus; Owner's draws</span><span class="lang-es">&minus; Retiros del propietario</span></span><span class="recon-value" style="color: var(--danger);">($26,810.00)</span></div>
+        <div class="recon-row" style="border-bottom: 2px solid var(--border); padding-bottom: 1rem;"><span class="recon-label"><span class="lang-en">&minus; Operating expenses (fees &amp; costs)</span><span class="lang-es">&minus; Gastos operativos (comisiones y costos)</span></span><span class="recon-value" style="color: var(--danger);">($1,993.00)</span></div>
+        <div class="recon-row" style="padding-top: 1rem;"><span class="recon-label"><span class="lang-en">Cash remaining in accounts</span><span class="lang-es">Efectivo restante en cuentas</span></span><span class="recon-value">$24.73</span></div>
+        <div class="recon-row" style="border: none; padding-top: 1.5rem; margin-top: 0.5rem; border-top: 2px solid var(--accent);"><span style="color: var(--text); font-weight: 700; font-size: 1rem;"><span class="lang-en">OWNER'S NET LOSS</span><span class="lang-es">PERDIDA NETA DEL PROPIETARIO</span></span><span class="recon-value" style="color: var(--danger); font-size: 1.5rem;">$40,215.27</span></div>
     </div>
 
-    <!-- The two components -->
     <div class="margin-comparison" style="margin-top: 2rem;">
         <div class="margin-card actual" style="background: rgba(231, 76, 60, 0.08);">
-            <h3 style="color: var(--danger);">Carrieles Outstanding Balance</h3>
+            <h3 style="color: var(--danger);"><span class="lang-en">Carrieles Outstanding Balance</span><span class="lang-es">Saldo Pendiente de Carrieles</span></h3>
             <div class="big-number" style="font-size: 2rem;">$38,281.42</div>
-            <div class="detail">Steel purchased but not paid for</div>
-            <div class="detail" style="margin-top: 0.5rem; font-size: 0.8rem;">95.2% of owner's total loss</div>
+            <div class="detail"><span class="lang-en">Steel purchased but not paid for</span><span class="lang-es">Acero comprado pero no pagado</span></div>
+            <div class="detail" style="margin-top: 0.5rem; font-size: 0.8rem;"><span class="lang-en">95.2% of owner's total loss</span><span class="lang-es">95.2% de la perdida total del propietario</span></div>
         </div>
         <div class="margin-card" style="background: rgba(201, 168, 76, 0.08); border-color: var(--accent);">
-            <h3 style="color: var(--accent);">Operating Expenses</h3>
+            <h3 style="color: var(--accent);"><span class="lang-en">Operating Expenses</span><span class="lang-es">Gastos Operativos</span></h3>
             <div class="big-number" style="font-size: 2rem; color: var(--accent);">$1,933.85</div>
-            <div class="detail">Wire fees, bank fees, CC expenses</div>
-            <div class="detail" style="margin-top: 0.5rem; font-size: 0.8rem;">4.8% of owner's total loss</div>
+            <div class="detail"><span class="lang-en">Wire fees, bank fees, CC expenses</span><span class="lang-es">Comisiones bancarias, transferencias, tarjeta</span></div>
+            <div class="detail" style="margin-top: 0.5rem; font-size: 0.8rem;"><span class="lang-en">4.8% of owner's total loss</span><span class="lang-es">4.8% de la perdida total del propietario</span></div>
         </div>
     </div>
     <div style="text-align: center; margin-top: 1rem;">
         <span style="font-size: 0.85rem; color: var(--text-muted);">
-            $38,281.42 + $1,933.85 = <strong style="color: var(--danger);">$40,215.27</strong> total owner loss
+            $38,281.42 + $1,933.85 = <strong style="color: var(--danger);">$40,215.27</strong> <span class="lang-en">total owner loss</span><span class="lang-es">perdida total del propietario</span>
         </span>
     </div>
 </section>
 
-<!-- Section 3: Transaction History -->
+<!-- Section 3: Transactions -->
 <div class="bg-dark">
 <section id="transactions">
     <div class="section-header">
-        <div class="section-number">Section 03</div>
-        <h2>Complete Transaction History</h2>
+        <div class="section-number"><span class="lang-en">Section 03</span><span class="lang-es">Seccion 03</span></div>
+        <h2><span class="lang-en">Complete Transaction History</span><span class="lang-es">Historial Completo de Transacciones</span></h2>
         <div class="section-line"></div>
-        <p>Every wire transfer between CCJO, Glory Diamond Industry (China), and Carrieles SAS (Colombia)</p>
+        <p><span class="lang-en">Every wire transfer between CCJO, Glory Diamond Industry (China), and Carrieles SAS (Colombia)</span><span class="lang-es">Cada transferencia entre CCJO, Glory Diamond Industry (China) y Carrieles SAS (Colombia)</span></p>
     </div>
 
-    <h3 style="color: var(--accent); margin-bottom: 1rem; font-weight: 400; letter-spacing: 1px;">Steel Purchased by CCJO &mdash; Paid to Glory Diamond Industry, China</h3>
+    <h3 style="color: var(--accent); margin-bottom: 1rem; font-weight: 400; letter-spacing: 1px;"><span class="lang-en">Steel Purchased by CCJO &mdash; Paid to Glory Diamond Industry, China</span><span class="lang-es">Acero Comprado por CCJO &mdash; Pagado a Glory Diamond Industry, China</span></h3>
     <div class="table-container">
         <table>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Date</th>
-                    <th>Amount (USD)</th>
-                    <th>Wire Reference</th>
-                </tr>
-            </thead>
+            <thead><tr><th>#</th><th><span class="lang-en">Date</span><span class="lang-es">Fecha</span></th><th><span class="lang-en">Amount (USD)</span><span class="lang-es">Monto (USD)</span></th><th><span class="lang-en">Wire Reference</span><span class="lang-es">Referencia</span></th></tr></thead>
             <tbody>
                 <tr><td>1</td><td>July 1, 2022</td><td class="amount">$5,000.00</td><td>Zhejiang Chouzhou Bank &mdash; Seq #164175</td></tr>
                 <tr><td>2</td><td>July 8, 2022</td><td class="amount">$42,970.00</td><td>Zhejiang Chouzhou Bank &mdash; Seq #101091</td></tr>
@@ -1361,22 +541,15 @@
                 <tr><td>5</td><td>April 26, 2023</td><td class="amount">$22,249.12</td><td>Zhejiang Chouzhou Bank &mdash; Seq #077307</td></tr>
                 <tr><td>6</td><td>August 18, 2023</td><td class="amount">$63,283.00</td><td>Zhejiang Chouzhou Bank &mdash; Seq #022229</td></tr>
                 <tr><td>7</td><td>December 10, 2024</td><td class="amount">$23,011.00</td><td>Zhejiang Chouzhou Bank &mdash; Seq #158645</td></tr>
-                <tr class="total-row"><td></td><td>TOTAL PURCHASED</td><td class="amount">$220,611.92</td><td></td></tr>
+                <tr class="total-row"><td></td><td><span class="lang-en">TOTAL PURCHASED</span><span class="lang-es">TOTAL COMPRADO</span></td><td class="amount">$220,611.92</td><td></td></tr>
             </tbody>
         </table>
     </div>
 
-    <h3 style="color: var(--success); margin: 2rem 0 1rem; font-weight: 400; letter-spacing: 1px;">Payments Received from Carrieles SAS</h3>
+    <h3 style="color: var(--success); margin: 2rem 0 1rem; font-weight: 400; letter-spacing: 1px;"><span class="lang-en">Payments Received from Carrieles SAS</span><span class="lang-es">Pagos Recibidos de Carrieles SAS</span></h3>
     <div class="table-container">
         <table>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Date</th>
-                    <th>Amount (USD)</th>
-                    <th>Wire Reference</th>
-                </tr>
-            </thead>
+            <thead><tr><th>#</th><th><span class="lang-en">Date</span><span class="lang-es">Fecha</span></th><th><span class="lang-en">Amount (USD)</span><span class="lang-es">Monto (USD)</span></th><th><span class="lang-en">Wire Reference</span><span class="lang-es">Referencia</span></th></tr></thead>
             <tbody>
                 <tr><td>1</td><td>December 13, 2022</td><td class="amount positive">$47,770.00</td><td>Banco Davivienda &mdash; Fed #02124</td></tr>
                 <tr><td>2</td><td>April 25, 2023</td><td class="amount positive">$28,000.00</td><td>Banco Davivienda &mdash; Fed #06139</td></tr>
@@ -1384,283 +557,140 @@
                 <tr><td>4</td><td>November 10, 2023</td><td class="amount positive">$6,299.50</td><td>Banco Davivienda &mdash; Fed #08438</td></tr>
                 <tr><td>5</td><td>February 14, 2024</td><td class="amount positive">$27,250.00</td><td>Banco Davivienda &mdash; Fed #04979</td></tr>
                 <tr><td>6</td><td>December 6, 2024</td><td class="amount positive">$23,011.00</td><td>Banco Davivienda &mdash; Fed #06848</td></tr>
-                <tr class="total-row"><td></td><td>TOTAL RECEIVED</td><td class="amount">$182,330.50</td><td></td></tr>
+                <tr class="total-row"><td></td><td><span class="lang-en">TOTAL RECEIVED</span><span class="lang-es">TOTAL RECIBIDO</span></td><td class="amount">$182,330.50</td><td></td></tr>
             </tbody>
         </table>
     </div>
 </section>
 
-<!-- Section 3: Year-by-Year Analysis -->
+<!-- Section 4: Analysis -->
 <div class="bg-dark">
 <section id="analysis">
     <div class="section-header">
-        <div class="section-number">Section 04</div>
-        <h2>Year-by-Year Analysis</h2>
+        <div class="section-number"><span class="lang-en">Section 04</span><span class="lang-es">Seccion 04</span></div>
+        <h2><span class="lang-en">Year-by-Year Analysis</span><span class="lang-es">Analisis Ano por Ano</span></h2>
         <div class="section-line"></div>
-        <p>Comparing steel purchased versus payments received each year</p>
+        <p><span class="lang-en">Comparing steel purchased versus payments received each year</span><span class="lang-es">Comparacion entre acero comprado y pagos recibidos cada ano</span></p>
     </div>
 
-    <!-- Visual Bar Chart -->
     <div class="chart-container">
         <div class="bar-chart">
-            <div class="bar-group">
-                <div class="bar-pair">
-                    <div class="bar cogs" style="height: 150px;" title="COGS: $65,770">
-                        <div class="bar-value">$65,770</div>
-                    </div>
-                    <div class="bar revenue" style="height: 109px;" title="Revenue: $47,770">
-                        <div class="bar-value">$47,770</div>
-                    </div>
-                </div>
-                <div class="bar-label">2022</div>
-            </div>
-            <div class="bar-group">
-                <div class="bar-pair">
-                    <div class="bar cogs" style="height: 250px;" title="COGS: $131,831">
-                        <div class="bar-value">$131,831</div>
-                    </div>
-                    <div class="bar revenue" style="height: 160px;" title="Revenue: $84,300">
-                        <div class="bar-value">$84,300</div>
-                    </div>
-                </div>
-                <div class="bar-label">2023</div>
-            </div>
-            <div class="bar-group">
-                <div class="bar-pair">
-                    <div class="bar cogs" style="height: 44px;" title="COGS: $23,011">
-                        <div class="bar-value">$23,011</div>
-                    </div>
-                    <div class="bar revenue" style="height: 96px;" title="Revenue: $50,261">
-                        <div class="bar-value">$50,261</div>
-                    </div>
-                </div>
-                <div class="bar-label">2024</div>
-            </div>
+            <div class="bar-group"><div class="bar-pair"><div class="bar cogs" style="height: 150px;"><div class="bar-value">$65,770</div></div><div class="bar revenue" style="height: 109px;"><div class="bar-value">$47,770</div></div></div><div class="bar-label">2022</div></div>
+            <div class="bar-group"><div class="bar-pair"><div class="bar cogs" style="height: 250px;"><div class="bar-value">$131,831</div></div><div class="bar revenue" style="height: 160px;"><div class="bar-value">$84,300</div></div></div><div class="bar-label">2023</div></div>
+            <div class="bar-group"><div class="bar-pair"><div class="bar cogs" style="height: 44px;"><div class="bar-value">$23,011</div></div><div class="bar revenue" style="height: 96px;"><div class="bar-value">$50,261</div></div></div><div class="bar-label">2024</div></div>
         </div>
         <div class="chart-legend">
-            <div class="legend-item"><div class="legend-dot cogs"></div> Steel Purchased (COGS)</div>
-            <div class="legend-item"><div class="legend-dot revenue"></div> Payments from Carrieles</div>
+            <div class="legend-item"><div class="legend-dot cogs"></div> <span class="lang-en">Steel Purchased (COGS)</span><span class="lang-es">Acero Comprado (Costo)</span></div>
+            <div class="legend-item"><div class="legend-dot revenue"></div> <span class="lang-en">Payments from Carrieles</span><span class="lang-es">Pagos de Carrieles</span></div>
         </div>
     </div>
 
-    <!-- Year breakdown table -->
     <div class="table-container">
         <table>
-            <thead>
-                <tr>
-                    <th>Year</th>
-                    <th>CCJO Purchased (COGS)</th>
-                    <th>Carrieles Paid</th>
-                    <th>Annual Difference</th>
-                    <th>Cumulative Balance</th>
-                </tr>
-            </thead>
+            <thead><tr>
+                <th><span class="lang-en">Year</span><span class="lang-es">Ano</span></th>
+                <th><span class="lang-en">CCJO Purchased</span><span class="lang-es">CCJO Compro</span></th>
+                <th><span class="lang-en">Carrieles Paid</span><span class="lang-es">Carrieles Pago</span></th>
+                <th><span class="lang-en">Annual Difference</span><span class="lang-es">Diferencia Anual</span></th>
+                <th><span class="lang-en">Cumulative Balance</span><span class="lang-es">Saldo Acumulado</span></th>
+            </tr></thead>
             <tbody>
-                <tr>
-                    <td>2022</td>
-                    <td class="amount">$65,770.00</td>
-                    <td class="amount">$47,770.00</td>
-                    <td class="amount negative">($18,000.00)</td>
-                    <td class="amount negative">($18,000.00)</td>
-                </tr>
-                <tr>
-                    <td>2023</td>
-                    <td class="amount">$131,830.92</td>
-                    <td class="amount">$84,299.50</td>
-                    <td class="amount negative">($47,531.42)</td>
-                    <td class="amount negative">($65,531.42)</td>
-                </tr>
-                <tr>
-                    <td>2024</td>
-                    <td class="amount">$23,011.00</td>
-                    <td class="amount">$50,261.00</td>
-                    <td class="amount positive">+$27,250.00</td>
-                    <td class="amount negative">($38,281.42)</td>
-                </tr>
-                <tr class="total-row">
-                    <td>TOTAL</td>
-                    <td class="amount">$220,611.92</td>
-                    <td class="amount">$182,330.50</td>
-                    <td class="amount" style="color: var(--danger);">($38,281.42)</td>
-                    <td class="amount" style="color: var(--danger);">($38,281.42)</td>
-                </tr>
+                <tr><td>2022</td><td class="amount">$65,770.00</td><td class="amount">$47,770.00</td><td class="amount negative">($18,000.00)</td><td class="amount negative">($18,000.00)</td></tr>
+                <tr><td>2023</td><td class="amount">$131,830.92</td><td class="amount">$84,299.50</td><td class="amount negative">($47,531.42)</td><td class="amount negative">($65,531.42)</td></tr>
+                <tr><td>2024</td><td class="amount">$23,011.00</td><td class="amount">$50,261.00</td><td class="amount positive">+$27,250.00</td><td class="amount negative">($38,281.42)</td></tr>
+                <tr class="total-row"><td>TOTAL</td><td class="amount">$220,611.92</td><td class="amount">$182,330.50</td><td class="amount" style="color: var(--danger);">($38,281.42)</td><td class="amount" style="color: var(--danger);">($38,281.42)</td></tr>
             </tbody>
         </table>
     </div>
 
-    <!-- Margin Comparison -->
     <div class="margin-comparison" style="margin-top: 3rem;">
         <div class="margin-card expected">
-            <h3 style="color: var(--success);">Expected Outcome</h3>
+            <h3 style="color: var(--success);"><span class="lang-en">Expected Outcome</span><span class="lang-es">Resultado Esperado</span></h3>
             <div class="big-number">+$35,000</div>
-            <div class="detail">~7 shipments &times; $5,000 margin</div>
-            <div class="detail" style="margin-top: 0.5rem;">Revenue should have been ~$255,612</div>
+            <div class="detail"><span class="lang-en">~7 shipments &times; $5,000 margin</span><span class="lang-es">~7 embarques &times; $5,000 margen</span></div>
+            <div class="detail" style="margin-top: 0.5rem;"><span class="lang-en">Revenue should have been ~$255,612</span><span class="lang-es">Los ingresos debieron ser ~$255,612</span></div>
         </div>
         <div class="margin-card actual">
-            <h3 style="color: var(--danger);">Actual Outcome</h3>
+            <h3 style="color: var(--danger);"><span class="lang-en">Actual Outcome</span><span class="lang-es">Resultado Real</span></h3>
             <div class="big-number">-$38,281</div>
-            <div class="detail">$220,612 paid &mdash; $182,331 received</div>
-            <div class="detail" style="margin-top: 0.5rem;">Swing of $73,281 from expectations</div>
+            <div class="detail"><span class="lang-en">$220,612 paid &mdash; $182,331 received</span><span class="lang-es">$220,612 pagado &mdash; $182,331 recibido</span></div>
+            <div class="detail" style="margin-top: 0.5rem;"><span class="lang-en">Swing of $73,281 from expectations</span><span class="lang-es">Desviacion de $73,281 de lo esperado</span></div>
         </div>
     </div>
 
-    <!-- Payment timeline -->
     <div class="section-header" style="margin-top: 4rem;">
-        <h2 style="font-size: 1.5rem;">Payment Cycle Analysis</h2>
+        <h2 style="font-size: 1.5rem;"><span class="lang-en">Payment Cycle Analysis</span><span class="lang-es">Analisis del Ciclo de Pago</span></h2>
         <div class="section-line"></div>
-        <p>Average time from CCJO purchase to Carrieles payment: 5&ndash;7 months</p>
+        <p><span class="lang-en">Average time from CCJO purchase to Carrieles payment: 5&ndash;7 months</span><span class="lang-es">Tiempo promedio desde la compra de CCJO hasta el pago de Carrieles: 5&ndash;7 meses</span></p>
     </div>
-
     <div class="table-container">
         <table>
-            <thead>
-                <tr>
-                    <th>CCJO Purchase Date</th>
-                    <th>Amount Paid to China</th>
-                    <th>Carrieles Payment Date</th>
-                    <th>Amount Received</th>
-                    <th>Days to Payment</th>
-                </tr>
-            </thead>
+            <thead><tr>
+                <th><span class="lang-en">CCJO Purchase Date</span><span class="lang-es">Fecha de Compra CCJO</span></th>
+                <th><span class="lang-en">Amount Paid to China</span><span class="lang-es">Monto Pagado a China</span></th>
+                <th><span class="lang-en">Carrieles Payment Date</span><span class="lang-es">Fecha de Pago Carrieles</span></th>
+                <th><span class="lang-en">Amount Received</span><span class="lang-es">Monto Recibido</span></th>
+                <th><span class="lang-en">Days to Payment</span><span class="lang-es">Dias para el Pago</span></th>
+            </tr></thead>
             <tbody>
-                <tr>
-                    <td>Jul 1&ndash;8, 2022</td>
-                    <td class="amount">$47,970.00</td>
-                    <td>Dec 13, 2022</td>
-                    <td class="amount">$47,770.00</td>
-                    <td style="text-align:center;">~158 days</td>
-                </tr>
-                <tr>
-                    <td>Sep 9, 2022</td>
-                    <td class="amount">$17,800.00</td>
-                    <td>Apr 25, 2023</td>
-                    <td class="amount">$28,000.00</td>
-                    <td style="text-align:center;">~228 days</td>
-                </tr>
-                <tr>
-                    <td>Jan 9, 2023</td>
-                    <td class="amount">$46,298.80</td>
-                    <td>Aug 17, 2023</td>
-                    <td class="amount">$50,000.00</td>
-                    <td style="text-align:center;">~220 days</td>
-                </tr>
-                <tr>
-                    <td>Apr 26, 2023</td>
-                    <td class="amount">$22,249.12</td>
-                    <td>Nov 10, 2023</td>
-                    <td class="amount">$6,299.50</td>
-                    <td style="text-align:center;">~198 days</td>
-                </tr>
-                <tr>
-                    <td>Aug 18, 2023</td>
-                    <td class="amount">$63,283.00</td>
-                    <td>Feb 14, 2024</td>
-                    <td class="amount">$27,250.00</td>
-                    <td style="text-align:center;">~180 days</td>
-                </tr>
-                <tr>
-                    <td>Dec 10, 2024</td>
-                    <td class="amount">$23,011.00</td>
-                    <td>Dec 6, 2024</td>
-                    <td class="amount">$23,011.00</td>
-                    <td style="text-align:center;">Same cycle</td>
-                </tr>
+                <tr><td>Jul 1&ndash;8, 2022</td><td class="amount">$47,970.00</td><td>Dec 13, 2022</td><td class="amount">$47,770.00</td><td style="text-align:center;">~158</td></tr>
+                <tr><td>Sep 9, 2022</td><td class="amount">$17,800.00</td><td>Apr 25, 2023</td><td class="amount">$28,000.00</td><td style="text-align:center;">~228</td></tr>
+                <tr><td>Jan 9, 2023</td><td class="amount">$46,298.80</td><td>Aug 17, 2023</td><td class="amount">$50,000.00</td><td style="text-align:center;">~220</td></tr>
+                <tr><td>Apr 26, 2023</td><td class="amount">$22,249.12</td><td>Nov 10, 2023</td><td class="amount">$6,299.50</td><td style="text-align:center;">~198</td></tr>
+                <tr><td>Aug 18, 2023</td><td class="amount">$63,283.00</td><td>Feb 14, 2024</td><td class="amount">$27,250.00</td><td style="text-align:center;">~180</td></tr>
+                <tr><td>Dec 10, 2024</td><td class="amount">$23,011.00</td><td>Dec 6, 2024</td><td class="amount">$23,011.00</td><td style="text-align:center;"><span class="lang-en">Same cycle</span><span class="lang-es">Mismo ciclo</span></td></tr>
             </tbody>
         </table>
     </div>
 </section>
 </div>
 
-<!-- Section 4: Balance Due -->
+<!-- Section 5: Balance Due -->
 <section id="balance">
     <div class="section-header">
-        <div class="section-number">Section 05</div>
-        <h2>Account Balance</h2>
+        <div class="section-number"><span class="lang-en">Section 05</span><span class="lang-es">Seccion 05</span></div>
+        <h2><span class="lang-en">Account Balance</span><span class="lang-es">Saldo de Cuenta</span></h2>
         <div class="section-line"></div>
-        <p>Reconciliation of all amounts between CCJO Partners and Carrieles SAS</p>
+        <p><span class="lang-en">Reconciliation of all amounts between CCJO Partners and Carrieles SAS</span><span class="lang-es">Conciliacion de todos los montos entre CCJO Partners y Carrieles SAS</span></p>
     </div>
-
     <div class="recon-box">
-        <div class="recon-row">
-            <span class="recon-label">Total steel purchased by CCJO for Carrieles</span>
-            <span class="recon-value">$220,611.92</span>
-        </div>
-        <div class="recon-row">
-            <span class="recon-label">Total payments received from Carrieles</span>
-            <span class="recon-value" style="color: var(--success);">($182,330.50)</span>
-        </div>
-        <div class="recon-row">
-            <span class="recon-label">Wire transfer costs borne by CCJO</span>
-            <span class="recon-value">$371.00</span>
-        </div>
-        <div class="recon-row total">
-            <span class="recon-label" style="color: var(--text);">TOTAL DUE TO CCJO</span>
-            <span class="recon-value">$38,652.42</span>
-        </div>
+        <div class="recon-row"><span class="recon-label"><span class="lang-en">Total steel purchased by CCJO for Carrieles</span><span class="lang-es">Total de acero comprado por CCJO para Carrieles</span></span><span class="recon-value">$220,611.92</span></div>
+        <div class="recon-row"><span class="recon-label"><span class="lang-en">Total payments received from Carrieles</span><span class="lang-es">Total de pagos recibidos de Carrieles</span></span><span class="recon-value" style="color: var(--success);">($182,330.50)</span></div>
+        <div class="recon-row"><span class="recon-label"><span class="lang-en">Wire transfer costs borne by CCJO</span><span class="lang-es">Costos de transferencia asumidos por CCJO</span></span><span class="recon-value">$371.00</span></div>
+        <div class="recon-row total"><span class="recon-label" style="color: var(--text);"><span class="lang-en">TOTAL DUE TO CCJO</span><span class="lang-es">TOTAL ADEUDADO A CCJO</span></span><span class="recon-value">$38,652.42</span></div>
     </div>
-
     <div class="kpi-grid" style="margin-top: 3rem;">
-        <div class="kpi-card">
-            <div class="kpi-label">Owner Investment</div>
-            <div class="kpi-value">$67,050</div>
-            <div class="kpi-sub">Personal capital from Carlos Moreno</div>
-        </div>
-        <div class="kpi-card">
-            <div class="kpi-label">Total Recovered</div>
-            <div class="kpi-value">$26,835</div>
-            <div class="kpi-sub">Draws + remaining cash</div>
-        </div>
-        <div class="kpi-card">
-            <div class="kpi-label">Owner's Net Loss</div>
-            <div class="kpi-value danger">$40,215</div>
-            <div class="kpi-sub">Due to outstanding balance</div>
-        </div>
-        <div class="kpi-card">
-            <div class="kpi-label">CCJO Cash Remaining</div>
-            <div class="kpi-value danger">$24.73</div>
-            <div class="kpi-sub">Operations suspended</div>
-        </div>
+        <div class="kpi-card"><div class="kpi-label"><span class="lang-en">Owner Investment</span><span class="lang-es">Inversion del Propietario</span></div><div class="kpi-value">$67,050</div><div class="kpi-sub"><span class="lang-en">Personal capital from Carlos Moreno</span><span class="lang-es">Capital personal de Carlos Moreno</span></div></div>
+        <div class="kpi-card"><div class="kpi-label"><span class="lang-en">Total Recovered</span><span class="lang-es">Total Recuperado</span></div><div class="kpi-value">$26,835</div><div class="kpi-sub"><span class="lang-en">Draws + remaining cash</span><span class="lang-es">Retiros + efectivo restante</span></div></div>
+        <div class="kpi-card"><div class="kpi-label"><span class="lang-en">Owner's Net Loss</span><span class="lang-es">Perdida Neta del Propietario</span></div><div class="kpi-value danger">$40,215</div><div class="kpi-sub"><span class="lang-en">Due to outstanding balance</span><span class="lang-es">Debido al saldo pendiente</span></div></div>
+        <div class="kpi-card"><div class="kpi-label"><span class="lang-en">CCJO Cash Remaining</span><span class="lang-es">Efectivo Restante de CCJO</span></div><div class="kpi-value danger">$24.73</div><div class="kpi-sub"><span class="lang-en">Operations suspended</span><span class="lang-es">Operaciones suspendidas</span></div></div>
     </div>
 </section>
 
-<!-- Section 5: Resolution -->
+<!-- Section 6: Resolution -->
 <div class="bg-dark">
 <section id="resolution">
     <div class="section-header">
-        <div class="section-number">Section 06</div>
-        <h2>Proposed Resolution</h2>
+        <div class="section-number"><span class="lang-en">Section 06</span><span class="lang-es">Seccion 06</span></div>
+        <h2><span class="lang-en">Proposed Resolution</span><span class="lang-es">Resolucion Propuesta</span></h2>
         <div class="section-line"></div>
-        <p>Three options to settle the outstanding balance and restore the business relationship</p>
+        <p><span class="lang-en">Three options to settle the outstanding balance and restore the business relationship</span><span class="lang-es">Tres opciones para liquidar el saldo pendiente y restablecer la relacion comercial</span></p>
     </div>
-
     <div class="resolution-grid">
-        <div class="resolution-card recommended">
-            <h3>Option A: Full Settlement</h3>
+        <div class="resolution-card recommended" data-badge="RECOMMENDED / RECOMENDADO">
+            <h3><span class="lang-en">Option A: Full Settlement</span><span class="lang-es">Opcion A: Liquidacion Total</span></h3>
             <div class="amount-highlight">$38,652.42</div>
-            <p>
-                Carrieles SAS remits the full outstanding balance to CCJO Partners Trading LLC
-                via wire transfer to settle all amounts for steel previously purchased and delivered.
-                This includes $38,281.42 in steel costs plus $371.00 in wire transfer fees borne by CCJO.
-            </p>
+            <p><span class="lang-en">Carrieles SAS remits the full outstanding balance to CCJO Partners Trading LLC via wire transfer to settle all amounts for steel previously purchased and delivered. This includes $38,281.42 in steel costs plus $371.00 in wire transfer fees borne by CCJO.</span><span class="lang-es">Carrieles SAS transfiere el saldo total pendiente a CCJO Partners Trading LLC mediante transferencia bancaria para liquidar todos los montos por acero previamente comprado y entregado. Esto incluye $38,281.42 en costos de acero mas $371.00 en comisiones de transferencia asumidas por CCJO.</span></p>
         </div>
         <div class="resolution-card">
-            <h3>Option B: Payment Plan</h3>
-            <div class="amount-highlight">Structured Payments</div>
-            <p>
-                Carrieles SAS agrees to a structured payment plan to settle the $38,652.42 balance
-                over an agreed period (e.g., 3&ndash;6 monthly installments), with payments via wire
-                transfer to CCJO's Wells Fargo account.
-            </p>
+            <h3><span class="lang-en">Option B: Payment Plan</span><span class="lang-es">Opcion B: Plan de Pagos</span></h3>
+            <div class="amount-highlight"><span class="lang-en">Structured Payments</span><span class="lang-es">Pagos Estructurados</span></div>
+            <p><span class="lang-en">Carrieles SAS agrees to a structured payment plan to settle the $38,652.42 balance over an agreed period (e.g., 3&ndash;6 monthly installments), with payments via wire transfer to CCJO's Wells Fargo account.</span><span class="lang-es">Carrieles SAS acuerda un plan de pagos estructurado para liquidar el saldo de $38,652.42 en un periodo acordado (por ejemplo, 3&ndash;6 cuotas mensuales), con pagos mediante transferencia bancaria a la cuenta de CCJO en Wells Fargo.</span></p>
         </div>
         <div class="resolution-card">
-            <h3>Option C: Resume &amp; Settle</h3>
-            <div class="amount-highlight">Settle + Continue</div>
-            <p>
-                If both parties wish to continue the trading relationship:
-                (1) Carrieles settles the outstanding $38,652.42 balance,
-                (2) future transactions are structured with the agreed $5,000/container margin, and
-                (3) payment terms are reduced from 5&ndash;7 months to 30&ndash;60 days.
-            </p>
+            <h3><span class="lang-en">Option C: Resume &amp; Settle</span><span class="lang-es">Opcion C: Reanudar &amp; Liquidar</span></h3>
+            <div class="amount-highlight"><span class="lang-en">Settle + Continue</span><span class="lang-es">Liquidar + Continuar</span></div>
+            <p><span class="lang-en">If both parties wish to continue the trading relationship: (1) Carrieles settles the outstanding $38,652.42 balance, (2) future transactions are structured with the agreed $5,000/container margin, and (3) payment terms are reduced from 5&ndash;7 months to 30&ndash;60 days.</span><span class="lang-es">Si ambas partes desean continuar la relacion comercial: (1) Carrieles liquida el saldo pendiente de $38,652.42, (2) las transacciones futuras se estructuran con el margen acordado de $5,000 por contenedor, y (3) los plazos de pago se reducen de 5&ndash;7 meses a 30&ndash;60 dias.</span></p>
         </div>
     </div>
 </section>
@@ -1670,73 +700,68 @@
 <footer>
     <div class="footer-logo">CCJO PARTNERS TRADING LLC</div>
     <p>3919 Westbury Trl, Eagan, MN 55123, USA</p>
-    <p style="margin-top: 0.5rem;"><strong>Carlos Moreno</strong> &mdash; Owner</p>
+    <p style="margin-top: 0.5rem;"><strong>Carlos Moreno</strong> &mdash; Owner / Propietario</p>
     <p class="disclaimer">
-        All transactions referenced in this presentation are supported by Wells Fargo bank statements
-        (checking and savings accounts), wire transfer confirmations with sequence numbers, and a
-        complete general ledger reconstruction. CCJO Partners Trading LLC is prepared to provide
-        any additional documentation requested by Carrieles SAS.
-        <br><br>
-        All amounts are in United States Dollars (USD). Prepared March 2026.
+        <span class="lang-en">All transactions referenced in this presentation are supported by Wells Fargo bank statements (checking and savings accounts), wire transfer confirmations with sequence numbers, and a complete general ledger reconstruction. CCJO Partners Trading LLC is prepared to provide any additional documentation requested by Carrieles SAS.<br><br>All amounts are in United States Dollars (USD). Prepared 2026.</span>
+        <span class="lang-es">Todas las transacciones referenciadas en esta presentacion estan respaldadas por estados de cuenta bancarios de Wells Fargo (cuentas corriente y de ahorro), confirmaciones de transferencias con numeros de secuencia, y una reconstruccion completa del libro mayor. CCJO Partners Trading LLC esta preparado para proporcionar cualquier documentacion adicional solicitada por Carrieles SAS.<br><br>Todos los montos estan en Dolares Estadounidenses (USD). Preparado en 2026.</span>
     </p>
 </footer>
 
 </div><!-- end main-content -->
 
 <script>
-    // Password protection
-    // SHA-256 hash of the password - change the hash to change the password
-    // Default password: CCJO2026
-    const PASS_HASH = '5e34b5c3d8e1a2f7b9c0d4e6f8a1b3c5d7e9f0a2b4c6d8e0f1a3b5c7d9e1f3a5';
-
-    async function sha256(message) {
-        const msgBuffer = new TextEncoder().encode(message);
-        const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    // Language switcher
+    function setLang(lang) {
+        if (lang === 'es') {
+            document.body.classList.add('es');
+        } else {
+            document.body.classList.remove('es');
+        }
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.textContent.trim() === lang.toUpperCase());
+        });
+        localStorage.setItem('ccjo-lang', lang);
     }
 
+    // Restore saved language
+    const savedLang = localStorage.getItem('ccjo-lang');
+    if (savedLang === 'es') setLang('es');
+
+    // Password protection
     async function checkPassword() {
         const input = document.getElementById('auth-input').value;
-        const hash = await sha256(input);
-
-        // Check against hash OR plain match for simplicity
         if (input === 'CCJO2026' || sessionStorage.getItem('ccjo-auth') === 'true') {
             document.getElementById('auth-gate').style.display = 'none';
             document.getElementById('main-content').style.display = 'block';
             sessionStorage.setItem('ccjo-auth', 'true');
         } else {
-            document.getElementById('auth-error').textContent = 'Invalid access code. Please try again.';
+            const errEl = document.getElementById('auth-error');
+            errEl.textContent = document.body.classList.contains('es')
+                ? 'Codigo de acceso invalido. Intente de nuevo.'
+                : 'Invalid access code. Please try again.';
             document.getElementById('auth-input').value = '';
             document.getElementById('auth-input').focus();
         }
         return false;
     }
 
-    // Check if already authenticated in this session
     if (sessionStorage.getItem('ccjo-auth') === 'true') {
         document.getElementById('auth-gate').style.display = 'none';
         document.getElementById('main-content').style.display = 'block';
     }
 
-    // Smooth scroll for navigation links
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+            document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
         });
     });
 
-    // Navbar background on scroll
+    // Navbar on scroll
     window.addEventListener('scroll', () => {
         const nav = document.querySelector('nav');
-        if (window.scrollY > 50) {
-            nav.style.background = 'rgba(15, 25, 35, 0.98)';
-        } else {
-            nav.style.background = 'rgba(15, 25, 35, 0.95)';
-        }
+        nav.style.background = window.scrollY > 50 ? 'rgba(15, 25, 35, 0.98)' : 'rgba(15, 25, 35, 0.95)';
     });
 </script>
 
