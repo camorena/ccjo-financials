@@ -257,7 +257,7 @@
 <body>
 
 <!-- Password Gate -->
-<div id="auth-gate">
+<div id="auth-gate" style="display: none;">
     <div class="auth-container">
         <div class="auth-logo">CCJO PARTNERS</div>
         <div class="auth-divider"></div>
@@ -291,7 +291,7 @@
 </div>
 
 <!-- Main Content -->
-<div id="main-content" style="display: none;">
+<div id="main-content">
 
 <!-- Navigation -->
 <nav>
@@ -701,14 +701,7 @@
     if (savedLang === 'es') setLang('es');
 
     // Password protection — TEMPORARILY DISABLED
-    document.getElementById('auth-gate').style.display = 'none';
-    document.getElementById('main-content').style.display = 'block';
-
-    async function checkPassword() {
-        document.getElementById('auth-gate').style.display = 'none';
-        document.getElementById('main-content').style.display = 'block';
-        return false;
-    }
+    // Auth gate hidden via inline style, main-content visible by default
 
     // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
