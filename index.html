@@ -257,7 +257,7 @@
 <body>
 
 <!-- Password Gate -->
-<div id="auth-gate" style="display: none;">
+<div id="auth-gate">
     <div class="auth-container">
         <div class="auth-logo">CCJO PARTNERS</div>
         <div class="auth-divider"></div>
@@ -291,7 +291,7 @@
 </div>
 
 <!-- Main Content -->
-<div id="main-content">
+<div id="main-content" style="display: none;">
 
 <!-- Navigation -->
 <nav>
@@ -700,8 +700,28 @@
     const savedLang = localStorage.getItem('ccjo-lang');
     if (savedLang === 'es') setLang('es');
 
-    // Password protection — TEMPORARILY DISABLED
-    // Auth gate hidden via inline style, main-content visible by default
+    // Password protection
+    async function checkPassword() {
+        const input = document.getElementById('auth-input').value;
+        if (input === 'CCJO2026') {
+            document.getElementById('auth-gate').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            sessionStorage.setItem('ccjo-auth', 'true');
+        } else {
+            const errEl = document.getElementById('auth-error');
+            errEl.textContent = document.body.classList.contains('es')
+                ? 'Codigo de acceso invalido. Intente de nuevo.'
+                : 'Invalid access code. Please try again.';
+            document.getElementById('auth-input').value = '';
+            document.getElementById('auth-input').focus();
+        }
+        return false;
+    }
+
+    if (sessionStorage.getItem('ccjo-auth') === 'true') {
+        document.getElementById('auth-gate').style.display = 'none';
+        document.getElementById('main-content').style.display = 'block';
+    }
 
     // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
